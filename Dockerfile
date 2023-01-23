@@ -3,18 +3,18 @@
 
 FROM ubuntu:22.04
 
-# basic setup, including Python and Node.js installations
-# (Node.js is needed for some GitHub Actions)
-RUN \
-apt update -y && \
-apt install -y curl unzip git libsystemc libsystemc-dev \
-    python3 python3-dev python3-pip && \
-python3 -m pip install --upgrade pip && \
-curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && \
-apt install -y nodejs && \
-apt clean && \
-rm -rf /var/lib/apt/lists/*
-
+# # basic setup, including Python and Node.js installations
+# # (Node.js is needed for some GitHub Actions)
+# RUN \
+# apt update -y && \
+# apt install -y curl unzip git libsystemc libsystemc-dev \
+#     python3 python3-dev python3-pip && \
+# python3 -m pip install --upgrade pip && \
+# curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && \
+# apt install -y nodejs && \
+# apt clean && \
+# rm -rf /var/lib/apt/lists/*
+#
 # # install Verilator.  the final remove in the same RUN command
 # # is important to keep the docker image size low
 # # https://verilator.org/guide/latest/install.html#git-quick-install
