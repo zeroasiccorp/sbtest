@@ -1,4 +1,4 @@
-# modified from: 
+# modified from:
 # https://github.com/docker/metadata-action
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 
@@ -29,8 +29,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.REPO_PAT }}
+          username: ${{ secrets.ZA_ACTOR }}
+          password: ${{ secrets.ZA_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
