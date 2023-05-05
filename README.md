@@ -28,10 +28,10 @@ jobs:
     container:
       image: ghcr.io/zeroasiccorp/sbtest:0.0.1
       credentials:
-      username: ${{ github.actor }}
-      password: ${{ secrets.REPO_PAT }}
+      username: ${{ secrets.ZA_ACTOR }}
+      password: ${{ secrets.ZA_TOKEN }}
     steps:
       # fill in your steps here
 ```
 
-The `image` field specifies the exact version of the image that should be used.  `REPO_PAT` should be a GitHub Secret containing a personal access token (PAT) that has read access to packages from `zeroasiccorp`.
+The `image` field specifies the exact version of the image that should be used.  `ZA_ACTOR` and `ZA_TOKEN` are organization-wide GitHub Secrets that are preconfigured to provide the correct permissions and are accessible from any repository in the `zeroasiccorp` org.
