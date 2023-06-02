@@ -15,6 +15,15 @@ apt install -y nodejs && \
 apt clean && \
 rm -rf /var/lib/apt/lists/*
 
+# install morty.  the final remove in the same RUN command
+# is important to keep the docker image size low.  the .rustup
+# folder in particular can be very large (~1 GB).
+# https://github.com/pulp-platform/morty
+RUN \
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+/root/.cargo/bin/cargo install --git https://github.com/pulp-platform/morty.git && \
+rm -rf /root/.rustup /root/.cargo/git /root/.cargo/registry
+
 # install Verilator.  the final remove in the same RUN command
 # is important to keep the docker image size low
 # https://verilator.org/guide/latest/install.html#git-quick-install
@@ -76,4 +85,4 @@ apt clean && \
 rm -rf /var/lib/apt/lists/*
 
 # set environment
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/riscv/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/riscv/bin:/root/.cargo/bin
