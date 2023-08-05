@@ -36,7 +36,7 @@ apt install -y libfl-dev && \
 git clone https://github.com/verilator/verilator && \
 cd verilator && \
 git pull && \
-git checkout v4.228 && \
+git checkout v5.012 && \
 autoconf && \
 ./configure && \
 make -j `nproc` && \
