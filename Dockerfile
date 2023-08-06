@@ -29,7 +29,7 @@ rm -rf /root/.rustup /root/.cargo/git /root/.cargo/registry
 # https://verilator.org/guide/latest/install.html#git-quick-install
 RUN \
 apt update -y && \
-apt install -y git perl python3 make autoconf g++ flex bison \
+apt install -y git help2man perl python3 make autoconf g++ flex bison \
     ccache libgoogle-perftools-dev numactl perl-doc && \
 apt install -y libfl2 && \
 apt install -y libfl-dev && \
