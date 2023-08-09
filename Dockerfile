@@ -1,14 +1,13 @@
 # Docker container for emulation testing
 # Copyright (C) 2023 Zero ASIC
 
-FROM ubuntu:22.04
+FROM python:3.11
 
 # basic setup, including Python and Node.js installations
 # (Node.js is needed for some GitHub Actions)
 RUN \
 apt update -y && \
-apt install -y curl unzip git libsystemc libsystemc-dev \
-    python3 python3-dev python3-pip && \
+apt install -y curl unzip git libsystemc libsystemc-dev && \
 python3 -m pip install --upgrade pip && \
 curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && \
 apt install -y nodejs && \
