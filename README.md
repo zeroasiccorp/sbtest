@@ -35,3 +35,16 @@ jobs:
 ```
 
 The `image` field specifies the exact version of the image that should be used.  `ZA_ACTOR` and `ZA_TOKEN` are organization-wide GitHub Secrets that are preconfigured to provide the correct permissions and are accessible from any repository in the `zeroasiccorp` org.
+
+## License
+
+[MIT License](LICENSE)
+
+## Contributing
+
+sbtest is an open-source project and welcomes contributions. To find out how to contribute to the project, see our
+[Contributing Guidelines](CONTRIBUTING.md).
+
+## Issues / Bugs
+
+We use [GitHub Issues](https://github.com/zeroasiccorp/sbtest/issues) for tracking requests and bugs.
