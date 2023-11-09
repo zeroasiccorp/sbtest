@@ -23,13 +23,16 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
 /root/.cargo/bin/cargo install --git https://github.com/pulp-platform/morty.git && \
 rm -rf /root/.rustup /root/.cargo/git /root/.cargo/registry
 
-# install verible. 
+# install verible. Move executables to a location on PATH and remove
+# downloaded files.
 RUN \
 apt-get update && apt-get install -y wget && \
 wget https://github.com/chipsalliance/verible/releases/download/v0.0-3303-gd87f2420/verible-v0.0-3303-gd87f2420-linux-static-x86_64.tar.gz && \
 tar xzf verible-v*.tar.gz && \
 rm verible-v*.tar.gz && \
-mv verible-v* verible
+mv verible-v* verible && \
+cp -a verible/bin/* /usr/local/bin && \
+rm -rf verible
 
 # install Verilator.  the final remove in the same RUN command
 # is important to keep the docker image size low
