@@ -6,7 +6,6 @@ The image can be built and released through GitHub Actions by pushing a tag star
 
 ```shell
 $ git tag v0.1.2
-$ git push origin main
 $ git push origin v0.1.2
 ```
 
