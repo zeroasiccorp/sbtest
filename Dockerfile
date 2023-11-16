@@ -66,7 +66,8 @@ apt update -y && \
 apt install -y autoconf gperf && \
 git clone https://github.com/steveicarus/iverilog.git && \
 cd iverilog && \
-git checkout --track -b v11-branch origin/v11-branch && \
+git pull && \
+git checkout v12_0 && \
 sh autoconf.sh && \
 ./configure && \
 make -j `nproc` && \
