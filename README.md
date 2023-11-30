@@ -1,6 +1,6 @@
 # sbtest
 
-This repo contains a Dockerfile specifying an image with Verible, Verilator (v5.018), Icarus Verilog (v12.0), and RISC-V tools (2023.01.04) preinstalled.
+This repo contains a Dockerfile specifying an image with Verible, Verilator (v5.018), and Icarus Verilog (v12.0) preinstalled.
 
 The image can be built and released through GitHub Actions by pushing a tag starting with `v`.  For example, if you want to build and release version 0.1.2 of this image:
 
