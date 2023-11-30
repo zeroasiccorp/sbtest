@@ -16,15 +16,6 @@ apt install -y nodejs && \
 apt clean && \
 rm -rf /var/lib/apt/lists/*
 
-# install morty.  the final remove in the same RUN command
-# is important to keep the docker image size low.  the .rustup
-# folder in particular can be very large (~1 GB).
-# https://github.com/pulp-platform/morty
-RUN \
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-/root/.cargo/bin/cargo install --git https://github.com/pulp-platform/morty.git && \
-rm -rf /root/.rustup /root/.cargo/git /root/.cargo/registry
-
 # install verible. Move executables to a location on PATH and remove
 # downloaded files.
 RUN \
@@ -77,25 +68,5 @@ rm -rf iverilog && \
 apt clean && \
 rm -rf /var/lib/apt/lists/*
 
-# install RISC-V toolchain.  the final remove in the same RUN command
-# is important to keep the docker image size low (particularly true
-# for this package, where the build consumes several GB)
-# https://github.com/riscv-collab/riscv-gnu-toolchain
-RUN \
-apt update -y && \
-apt install -y autoconf automake autotools-dev curl python3 \
-    libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex \
-    texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build && \
-git clone https://github.com/riscv/riscv-gnu-toolchain && \
-cd riscv-gnu-toolchain && \
-git pull && \
-git checkout 2023.01.04 && \
-./configure --prefix=/opt/riscv && \
-make -j `nproc` && \
-cd .. && \
-rm -rf riscv-gnu-toolchain && \
-apt clean && \
-rm -rf /var/lib/apt/lists/*
-
 # set environment
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/riscv/bin:/root/.cargo/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
