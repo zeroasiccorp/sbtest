@@ -1,0 +1,29 @@
+# Docker container for emulation testing
+
+# Copyright (c) 2023 Zero ASIC Corporation
+# This code is licensed under Apache License 2.0 (see LICENSE for details)
+
+FROM ghcr.io/zeroasiccorp/sbtest:latest
+
+# install RISC-V toolchain.  the final remove in the same RUN command
+# is important to keep the docker image size low (particularly true
+# for this package, where the build consumes several GB)
+# https://github.com/riscv-collab/riscv-gnu-toolchain
+RUN \
+apt update -y && \
+apt install -y autoconf automake autotools-dev curl python3 \
+    libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex \
+    texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build && \
+git clone https://github.com/riscv/riscv-gnu-toolchain && \
+cd riscv-gnu-toolchain && \
+git pull && \
+git checkout 2023.01.04 && \
+./configure --prefix=/opt/riscv && \
+make -j `nproc` && \
+cd .. && \
+rm -rf riscv-gnu-toolchain && \
+apt clean && \
+rm -rf /var/lib/apt/lists/*
+
+# set environment
+ENV PATH=$PATH:/opt/riscv/bin
